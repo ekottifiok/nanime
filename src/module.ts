@@ -9,7 +9,7 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: '@astraldev/nuxt-animejs',
+    name: 'nanime',
     configKey: 'animejs',
     compatibility: {
       nuxt: '>=3.13.5 <5.0.0',
@@ -31,16 +31,22 @@ export default defineNuxtModule<ModuleOptions>({
         config.optimizeDeps.include.push(
           'animejs', 'animejs/animatable',
           '@vueuse/core', 'animejs/animation',
+          'animejs/utils',
         )
       },
     }))
 
-    addImportsDir(resolver.resolve('./runtime/app/composables'))
-    addComponentsDir({
-      path: resolver.resolve('./runtime/app/components'),
-      global: true,
-      prefix: 'A',
-    })
+    if (_options.components) {
+      addComponentsDir({
+        path: resolver.resolve('./runtime/app/components'),
+        global: true,
+        prefix: 'A',
+      })
+    }
+
+    if (_options.composables) {
+      addImportsDir(resolver.resolve('./runtime/app/composables'))
+    }
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve('./runtime/plugin'))

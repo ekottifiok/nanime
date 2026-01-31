@@ -1,20 +1,12 @@
-<!--
-Get your module up and running quickly.
-
-Find and replace all on all files (CMD+SHIFT+F):
-- Name: My Module
-- Package name: my-module
-- Description: My new Nuxt module
--->
-
-# My Module
+# nanime
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-My new Nuxt module for doing amazing things.
+This module provides a set of SSR safe composables and components to make it easier
+to use [AnimeJS](https://animejs.com/) in your Nuxt application.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
 <!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-module?file=playground%2Fapp.vue) -->
@@ -22,20 +14,38 @@ My new Nuxt module for doing amazing things.
 
 ## Features
 
-<!-- Highlight some of the features your module provide here -->
-- ⛰ &nbsp;Foo
-- 🚠 &nbsp;Bar
-- 🌲 &nbsp;Baz
+- Help to integrate animejs into your project without the need for much boilerplate codes
+- SSR Safe components like `useAnimate`, `useWaapiAnimate`, ..etc
+- Provides a set of transition components created with the `waapi` utility
+- Doesn't include predefined animation settings other than `animejs` defaults
+- Zero-config setup needed
 
 ## Quick Setup
+
+### Installation with `nuxt module` command
 
 Install the module to your Nuxt application with one command:
 
 ```bash
-npx nuxt module add my-module
+npx nuxt module add nanime
 ```
 
-That's it! You can now use My Module in your Nuxt app ✨
+### Manual install
+
+```bash
+npm install nanime
+```
+
+Then add the module to the `modules` section of your `nuxt.config.ts`:
+
+```ts
+export default defineNuxtConfig({
+  modules: ['nanime'],
+  nanime: { ... },
+})
+```
+
+That's it! You can now use the module in your application
 
 
 ## Contribution

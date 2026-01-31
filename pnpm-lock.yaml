@@ -69,7 +69,7 @@ importers:
 
   playground:
     dependencies:
-      '@astraldev/nuxt-animejs':
+      'nanime':
         specifier: workspace:*
         version: link:..
       '@tailwindcss/vite':
