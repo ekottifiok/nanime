@@ -7,10 +7,11 @@ export interface ModuleOptions {
   components: boolean
 }
 
+const __configKey = 'nanime'
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nanime',
-    configKey: 'animejs',
+    configKey: __configKey,
     compatibility: {
       nuxt: '>=3.13.5 <5.0.0',
     },
@@ -47,6 +48,8 @@ export default defineNuxtModule<ModuleOptions>({
     if (_options.composables) {
       addImportsDir(resolver.resolve('./runtime/app/composables'))
     }
+
+    _nuxt.options.alias[`#${__configKey}`] = resolver.resolve('./runtime/app/composables')
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve('./runtime/plugin'))
