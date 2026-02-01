@@ -3,25 +3,22 @@
     <!-- Section 1: Basic Loop -->
     <section>
       <h2>1. Basic Infinite Loop</h2>
-      <div class="p-4 border border-dashed border-gray-700 rounded-lg">
-        <div
-          ref="box1"
-          class="size-10 bg-green-500 rounded-lg shadow-lg"
-        />
-      </div>
+      <PWrapper>
+        <PItem ref="box1" />
+      </PWrapper>
     </section>
 
     <!-- Section 2: Grid Stagger -->
     <section>
       <h2>2. Grid Stagger</h2>
-      <div class="p-4 border border-dashed border-gray-700 rounded-lg grid grid-cols-5 w-fit gap-2">
-        <div
+      <PWrapper extra-class="grid grid-cols-5 w-fit gap-2">
+        <PItem
           v-for="i in 30"
           :key="i"
           ref="staggerBox"
-          class="size-5 bg-indigo-500 rounded-md shadow-sm"
+          extra-class="size-5 bg-indigo-500"
         />
-      </div>
+      </PWrapper>
     </section>
 
     <!-- Section 3: Interactive Controls -->
@@ -29,53 +26,33 @@
       <h2>3. Interactive: Swap Target & Animation</h2>
 
       <div class="flex gap-4 mb-6">
-        <div class="flex gap-2 p-1 bg-gray-800/50 rounded-lg">
-          <button
-            class="px-3 py-1 rounded text-sm transition-colors"
-            :class="animType === 'move' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'"
-            @click="animType = 'move'"
-          >
-            Move
-          </button>
-          <button
-            class="px-3 py-1 rounded text-sm transition-colors"
-            :class="animType === 'spin' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'"
-            @click="animType = 'spin'"
-          >
-            Spin
-          </button>
-          <button
-            class="px-3 py-1 rounded text-sm transition-colors"
-            :class="animType === 'scale' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'"
-            @click="animType = 'scale'"
-          >
-            Scale
-          </button>
-        </div>
+        <PTabs
+          v-model="animType"
+          :items="[
+            { id: 'move', label: 'Move' },
+            { id: 'spin', label: 'Spin' },
+            { id: 'scale', label: 'Scale' },
+          ]"
+        />
 
-        <button
-          class="px-3 py-1 rounded text-sm bg-gray-700 hover:bg-gray-600 text-white transition-colors"
-          @click="targetId = targetId === 'A' ? 'B' : 'A'"
-        >
+        <PButton @click="targetId = targetId === 'A' ? 'B' : 'A'">
           Swap Target (Current: {{ targetId }})
-        </button>
+        </PButton>
       </div>
 
-      <div class="relative h-40 p-4 border border-dashed border-gray-700 rounded-lg overflow-hidden">
-        <div
+      <PWrapper extra-class="relative h-40 overflow-hidden">
+        <PItem
           ref="targetA"
-          class="absolute top-1/2 left-4 -translate-y-1/2 size-20 bg-rose-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl"
-        >
-          A
-        </div>
+          label="A"
+          extra-class="absolute top-1/2 left-4 -translate-y-1/2 size-20 bg-rose-500 rounded-xl text-2xl"
+        />
 
-        <div
+        <PItem
           ref="targetB"
-          class="absolute top-1/2 left-32 -translate-y-1/2 size-20 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-2xl"
-        >
-          B
-        </div>
-      </div>
+          label="B"
+          extra-class="absolute top-1/2 left-32 -translate-y-1/2 size-20 bg-amber-500 rounded-full text-2xl"
+        />
+      </PWrapper>
     </section>
   </div>
 </template>

@@ -50,16 +50,15 @@ export function normalizeAnimeTarget(target: AnimeTargets): TargetsParam {
   return resolved
 }
 
-type AnimeLayoutTargets = DOMTargetSelector | MaybeElementRef<HTMLElement | VueInstance>
-export function normalizeLayoutTarget(target: AnimeLayoutTargets): DOMTargetSelector {
+type AnimeLayoutTargets = DOMTargetSelector | MaybeElementRef<HTMLElement | VueInstance> | null | undefined
+export function normalizeLayoutTarget(target: AnimeLayoutTargets): DOMTargetSelector | null {
   const resolved = toValue(target)
+
+  if (!resolved) return null
 
   if (isVueInstance(resolved)) {
     return resolved.$el as HTMLElement | SVGElement
   }
-
-  if (!target)
-    throw new Error('AnimeLayoutTargets cannot be null or undefined')
 
   return resolved
 }

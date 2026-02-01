@@ -8,9 +8,10 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nanime": "workspace:*",
     "@tailwindcss/vite": "^4.1.18",
+    "nanime": "workspace:*",
     "nuxt": "^4.3.0",
+    "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18"
   }
 }

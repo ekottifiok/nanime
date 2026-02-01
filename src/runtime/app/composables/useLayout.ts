@@ -1,11 +1,11 @@
-import { computed, shallowRef, toValue, watchEffect, type MaybeRefOrGetter } from '#imports'
-import { createLayout, type AutoLayoutParams } from 'animejs/layout'
+import { computed, shallowRef, toValue, watchEffect, type MaybeRef, type MaybeRefOrGetter } from '#imports'
+import { createLayout, type AutoLayoutParams, type LayoutAnimationParams } from 'animejs/layout'
 import { normalizeLayoutTarget } from '../utils/normalize-targets'
 import { extractNonFunctionProperties } from '../utils/extract-props'
 import { useMounted } from '@vueuse/core'
 
 export function useAnimeLayout(
-  target: Parameters<typeof normalizeLayoutTarget>[0],
+  target: MaybeRef<Parameters<typeof normalizeLayoutTarget>[0]>,
   options?: MaybeRefOrGetter<AutoLayoutParams>,
 ) {
   const mounted = useMounted()
@@ -13,7 +13,8 @@ export function useAnimeLayout(
 
   watchEffect(() => {
     if (!mounted.value) return
-    const targets = normalizeLayoutTarget(target)
+    const targets = normalizeLayoutTarget(toValue(target))
+    if (!targets) return
     const newLayout = createLayout(targets, toValue(options) || {})
     layout.value = newLayout
   })
@@ -21,7 +22,9 @@ export function useAnimeLayout(
   return {
     properties: computed(() => layout.value ? extractNonFunctionProperties(layout.value) : undefined),
     record: () => layout.value?.record(),
-    animate: () => layout.value?.animate(),
     revert: () => layout.value?.revert(),
+    animate: (options?: LayoutAnimationParams, cb?: () => void) => {
+      return layout.value?.animate(options || {})?.then(() => cb?.()) || cb?.()
+    },
   }
 }

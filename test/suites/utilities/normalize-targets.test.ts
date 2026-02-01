@@ -54,6 +54,15 @@ describe('normalize-targets', async () => {
           const nested = [singleElement, [multipleElements[0], multipleElements[1]]] as any[]
           expect(fn(nested)).toEqual([singleElement, multipleElements[0], multipleElements[1]])
         })
+
+        it('should filter out nullish values from arrays', () => {
+          const mixedArray = [singleElement, undefined, null, [multipleElements[0]]] as any[]
+          const result = fn(mixedArray)
+          expect(result).toContain(singleElement)
+          expect(result).toContain(multipleElements[0])
+          expect(result).not.toContain(null)
+          expect(result).not.toContain(undefined)
+        })
       })
     })
   })
@@ -100,9 +109,14 @@ describe('normalize-targets', async () => {
       expect(normalizeLayoutTarget(elementRef)).toBe(singleElement)
     })
 
-    it('should throw error when passed null/undefined (runtime behavior)', () => {
-      expect(() => normalizeLayoutTarget(null as any)).toThrow()
-      expect(() => normalizeLayoutTarget(undefined as any)).toThrow()
+    it('should return null when passed null or undefined', () => {
+      expect(normalizeLayoutTarget(null)).toBeNull()
+      expect(normalizeLayoutTarget(undefined)).toBeNull()
+    })
+
+    it('should resolve a Reactive Ref containing null to null', () => {
+      const nullRef = ref(null)
+      expect(normalizeLayoutTarget(nullRef as any)).toBeNull()
     })
   })
 })
