@@ -62,3 +62,17 @@ export function normalizeLayoutTarget(target: AnimeLayoutTargets): DOMTargetSele
 
   return resolved
 }
+
+type SplitTargets = HTMLElement | string
+type SplitTextTargets = SplitTargets | MaybeElementRef<HTMLElement> | null | undefined | MaybeElementRef<VueInstance>
+export function normalizeSplitTextTarget(target: SplitTextTargets): SplitTargets | null {
+  const resolved = toValue(target)
+
+  if (!resolved) return null
+
+  if (isVueInstance(resolved)) {
+    return resolved.$el as HTMLElement
+  }
+
+  return resolved
+}

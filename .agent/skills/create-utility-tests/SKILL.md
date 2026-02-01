@@ -16,6 +16,7 @@ Do **not** use mocks for DOM elements or Vue instances. Instead, use **real comp
 1.  **Create a Test Component**: Create a `.vue` file (e.g., `test-component.vue`) in the test suite directory if the utility works with vue components or template refs
     - Use `<script setup lang="ts">` and `useTemplateRef` for type-safe refs.
     - Explicitly `defineExpose` any refs needed for testing.
+    - Only if the utility can't use other components present, i.e it requires something different from what's in other components present
 
     ```
     <script setup lang="ts">

@@ -37,8 +37,8 @@ export default defineNuxtModule<ModuleOptions>({
         config.optimizeDeps.include.push(
           'animejs', 'animejs/animatable',
           '@vueuse/core', 'animejs/animation',
-          'animejs/utils', 'lodash-es',
-          'tailwind-merge', 'animejs/layout',
+          'animejs/utils', 'lodash-es', 'animejs/waapi',
+          'tailwind-merge', 'animejs/layout', 'animejs/text',
         )
       },
     }))

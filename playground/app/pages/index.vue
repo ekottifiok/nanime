@@ -21,6 +21,12 @@
         title="Slide Transition"
         description="Interactive demos of slide transitions with useWaapi, modes, and group transitions."
       />
+
+      <PDemoCard
+        to="/composables/use-split-text"
+        title="useSplitText Demo"
+        description="Demonstration of text splitting into lines, words, and chars with animation."
+      />
     </nav>
   </div>
 </template>
