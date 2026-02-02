@@ -1,40 +1,63 @@
 ---
 seo:
-  title: Write beautiful docs with Markdown
-  description: Ship fast, flexible, and SEO-optimized documentation with beautiful
-    design out of the box. Docus brings together the best of the Nuxt ecosystem.
-    Powered by Nuxt UI.
+  title: Effortless animations with AnimeJS
+  description: Build SSR Safe animations for Nuxt without having to worry about
+    targets, hooks and component lifecycle.
 ---
 
 ::u-page-hero
+---
+orientation: horizontal
+---
+  ::code-group
+    ::hero-animation{label="Preview"}
+    ::
+    ```html [Template]
+    <div class="boxes grid grid-cols-5 place-items-center gap-2.5">
+      <div class="box size-8 rounded-md bg-white/40" v-for="i in 20" :key="i" />
+    </div>
+    ```
+    ```ts [Script]
+    import { useAnimate } from '#imports';
+    import { stagger } from "#nanime/utils";
+
+    useAnimate(".boxes > .box", {
+      y: {
+        to: '-80%',
+        ease: 'outBack',
+        duration: 600,
+      },
+      rotate: {
+        from: '-1turn',
+        delay: 0
+      },
+      scale: [1, 1.1, 0.8, 1],
+      delay: stagger(50),
+      ease: 'inOutCirc',
+      loopDelay: 1000,
+      loop: true,
+      alternate: true,
+    });
+    ```
+  ::
+
 #title
-Write beautiful docs with Markdown
+Effortless animations with [AnimeJS]{.text-primary}
 
 #description
-Ship fast, flexible, and SEO-optimized documentation with beautiful design out of the box.
-
-Docus brings the best of the Nuxt ecosystem into one CLI.
+Build SSR Safe animations for Nuxt without having to worry about targets, hooks and component lifecycle.
 
 #links
   :::u-button
   ---
-  color: neutral
+  icon: i-lucide-arrow-right
   size: xl
   to: /getting-started/installation
-  trailing-icon: i-lucide-arrow-right
   ---
   Get started
   :::
 
-  :::u-button
-  ---
-  color: neutral
-  icon: simple-icons-github
-  size: xl
-  to: https://github.com/nuxt-content/docus
-  variant: outline
-  ---
-  Star on GitHub
+  :::copy-code-input{source="npx nuxi module add nanime"}
   :::
 ::
 
@@ -43,9 +66,10 @@ Docus brings the best of the Nuxt ecosystem into one CLI.
 Shipped with many features
 
 #features
-  :::u-page-feature
+  :::u-page-card
   ---
   icon: i-simple-icons-nuxt
+  spotlight: true
   target: _blank
   to: https://nuxt.com
   ---
@@ -53,71 +77,48 @@ Shipped with many features
   Built with [Nuxt 4]{.text-primary}
   
   #description
-  Optimized by the most famous Vue framework. Docus gives you everything you need to build fast, performant, and SEO-friendly websites.
+  Created with nuxt for nuxt
   :::
 
-  :::u-page-feature
+  :::u-page-card
   ---
-  icon: i-simple-icons-nuxt
+  icon: i-simple-icons-animedotjs
+  spotlight: true
   target: _blank
-  to: https://ui.nuxt.com/
+  to: https://animejs.com/
   ---
   #title
-  Powered by [Nuxt UI]{.text-primary}
+  Powered by [AnimeJS]{.text-primary}
   
   #description
-  Beautiful out of the box, minimal by design but highly customizable. Docus leverages Nuxt UI to give you the best docs writing experience with zero boilerplate, just focus on your content.
+  Animation engine by `animejs`
   :::
 
-  :::u-page-feature
+  :::u-page-card
   ---
   icon: i-simple-icons-nuxt
+  spotlight: true
   target: _blank
-  to: https://content.nuxt.com
+  to: https://nuxt.com
   ---
   #title
-  Enhanced Markdown syntax by [Nuxt Content]{.text-primary}
+  [SSR]{.text-primary} safe
   
   #description
-  The only thing you need to take care about is writing your content. Write your pages in Markdown and extend with MDC syntax to embed Nuxt UI or custom Vue components. Structure, routing, and rendering are handled for you.
+  Using composables doesn't break ssr nor cause hydration issues
   :::
 
-  :::u-page-feature
+  :::u-page-card
   ---
   icon: i-simple-icons-nuxt
+  spotlight: true
   target: _blank
   to: https://nuxt.com/docs/guide/directory-structure/app-config
   ---
   #title
-  Customize with [Nuxt App Config]{.text-primary}
+  Customizable
   
   #description
-  Update colors, social links, header logos and component styles globally using the `app.config.ts`, no direct code modifications required.
-  :::
-
-  :::u-page-feature
-  ---
-  icon: i-simple-icons-nuxt
-  target: _blank
-  to: https://content.nuxt.com/studio
-  ---
-  #title
-  Edit in production with [Nuxt Studio]{.text-primary}
-  
-  #description
-  Edit your content in production with zero Markdown knowledge required. Let your non technical colleagues collaborate on the documentation and integrate Vue components without code skills.
-  :::
-
-  :::u-page-feature
-  ---
-  icon: i-simple-icons-nuxt
-  target: _blank
-  to: https://ui.nuxt.com/components/content-search
-  ---
-  #title
-  Built-in navigation and [full-text search]{.text-primary}
-  
-  #description
-  Only focus on ordering your content, Docus handles the search modal and auto-generates the side navigation for you.
+  Enable or disable composables or components
   :::
 ::
