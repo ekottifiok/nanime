@@ -21,7 +21,7 @@ useAnimate('.boxes > .box', {
 </script>
 
 <template>
-  <div class="p-8 flex items-center h-64 relative isolate bg-(--hex-bg-1) rounded-lg">
+  <div class="p-8 flex items-center h-64 relative isolate bg-primary/5 rounded-lg text-primary/30">
     <div class="grid-wrapper boxes">
       <div
         v-for="i in 40"
@@ -47,6 +47,6 @@ useAnimate('.boxes > .box', {
 }
 
 .box {
-  @apply size-9 rounded-sm bg-white/40 aspect-square;
+  @apply size-9 rounded-sm bg-primary/30 aspect-square;
 }
 </style>
