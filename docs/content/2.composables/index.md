@@ -5,9 +5,7 @@ navigation:
   icon: i-lucide-box
 ---
 
-# Introduction
-
-`nanime` provides a set of composables to help you animate your application, wrapping the powerful features of [AnimeJS](https://animejs.com/).
+`nanime` provides a set of composables that wraps [AnimeJS](https://animejs.com/) utilities.
 
 ::u-page-grid
   :::u-page-card{to="/composables/use-animate" icon="i-ph-play-circle" title="useAnimate"}

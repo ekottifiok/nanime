@@ -1,7 +1,7 @@
 import { toReactive, tryOnScopeDispose, useMounted } from '@vueuse/core'
 import { shallowRef, toValue, watchEffect, type MaybeRefOrGetter } from '#imports'
 import { normalizeAnimeTarget } from '../utils/normalize-targets'
-import type { AnimationParams } from 'animejs'
+import type { AnimationParams, TargetsParam } from 'animejs'
 import { animate, type JSAnimation } from 'animejs/animation'
 
 export function useAnimate(
@@ -11,10 +11,13 @@ export function useAnimate(
   const mounted = useMounted()
   const animation = shallowRef(animate({}, {}))
 
+  let oldTarget: TargetsParam
   watchEffect(() => {
     if (!mounted.value) return
-    if (animation.value) animation.value.revert()
     const targets = normalizeAnimeTarget(target)
+    if (oldTarget === targets) return
+    if (animation.value) animation.value.revert()
+    oldTarget = targets
     const newAnimation = animate(targets, toValue(options) || {})
     animation.value = newAnimation
   })

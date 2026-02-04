@@ -1,4 +1,4 @@
-import { toValue, type MaybeRef } from '#imports'
+import { isReactive, toValue, type MaybeRef } from '#imports'
 import type { MaybeElementRef, VueInstance } from '@vueuse/core'
 import type { TargetsParam, DOMTargetsParam, DOMTargetSelector } from 'animejs'
 
@@ -30,7 +30,7 @@ export function normalizeWaapiAnimeTarget(target: WaapiTargets): DOMTargetsParam
 
 type AnimeTargets = TargetsParam | MaybeElementRef | MaybeElementRef[]
 export function normalizeAnimeTarget(target: AnimeTargets): TargetsParam {
-  const resolved = toValue(target)
+  const resolved = isReactive(target) ? target : toValue(target)
 
   if (!resolved) return []
 
