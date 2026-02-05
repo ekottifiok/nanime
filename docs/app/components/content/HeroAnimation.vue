@@ -47,6 +47,6 @@ useAnimate('.boxes > .box', {
 }
 
 .box {
-  @apply size-9 rounded-sm bg-primary/30 aspect-square;
+  @apply size-7 md:size-9 rounded-sm bg-primary/30 aspect-square;
 }
 </style>

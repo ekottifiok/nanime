@@ -29,10 +29,7 @@ orientation: horizontal
     import { stagger } from '#nanime/utils'
 
     useAnimate('.boxes > .box', {
-      scale: [
-        { to: [0, 1.25] },
-        { to: 0 }
-      ],
+      scale: [{ to: [0, 1.25] }, { to: 0 }],
       boxShadow: [
         { to: '0 0 1rem 0 currentColor' },
         { to: '0 0 0rem 0 currentColor' }
