@@ -21,7 +21,7 @@ export default defineNuxtConfig({
   },
   sourcemap: {
     server: false,
-    client: false
+    client: false,
   },
   devServer: {
     port: 3001,
