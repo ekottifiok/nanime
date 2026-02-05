@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+env:
+  CI: true
+
 jobs:
   lint:
     runs-on: ubuntu-latest
