@@ -1,7 +1,4 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
-
-name: release nanime
+name: Release
 
 on:
   release:
@@ -14,25 +11,49 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm i -g pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm test
+
+      - name: Install pnpm
+        run: npm i -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Prepare module
+        run: pnpm run dev:prepare
+
+      - name: Run tests
+        run: pnpm test
 
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org/
-      - run: npm i -g pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm publish
+
+      - name: Install pnpm
+        run: npm i -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Prepare module
+        run: pnpm run dev:prepare
+
+      - name: Publish package
+        run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
