@@ -1,9 +1,26 @@
 export default defineNuxtConfig({
   extends: ['docus'],
-  modules: ['nanime'],
+  modules: process.env.NODE_ENV === 'development' ? ['../src/module'] : ['nanime'],
+  components: [
+    {
+      path: 'app/components',
+      pathPrefix: false,
+      global: true,
+    },
+  ],
   css: ['./app/assets/css/main.css'],
   site: {
     name: 'nanime',
+  },
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          // @ts-expect-error type isn't properly inferred
+          noApiRoute: false,
+        },
+      },
+    },
   },
   devServer: {
     port: 3001,

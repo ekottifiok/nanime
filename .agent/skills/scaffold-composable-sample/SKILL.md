@@ -22,6 +22,7 @@ Standard Docus frontmatter with title, description, and **navigation icon** (`i-
 
 ### 2. Type Definition & Arguments
 **CRITICAL**: Extract exact types from `src/runtime/app/utils/normalize-targets.ts` (e.g., `AnimeTargets`, `WaapiTargets`) to ensure accuracy. Do not use loose types like `Object` or `Array`.
+Use `::field-group` and `::field` components for arguments documentation.
 
 ### 3. Usage Section
 Must include `::code-group`:
@@ -80,8 +81,15 @@ function useMyAnimation(target: MyAnimationTargets, options: Options): ReturnTyp
 \`\`\`
 
 ### Arguments
-- **target**: Description.
-- **options**: Description.
+
+::field-group
+  ::field{name="target" type="MyAnimationTargets" required}
+  Description.
+  ::
+  ::field{name="options" type="Options"}
+  Description.
+  ::
+::
 
 ## Usage
 
