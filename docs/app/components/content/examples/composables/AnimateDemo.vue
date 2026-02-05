@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { round } from 'animejs/utils'
+import { round } from '#nanime/utils'
 import ExampleWrapper from '~/components/shared/ExampleWrapper.vue'
 
 const vector2D = shallowReactive({ x: 0, y: 0 })

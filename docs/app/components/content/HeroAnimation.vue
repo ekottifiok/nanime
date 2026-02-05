@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { stagger } from 'animejs/utils'
+import { stagger } from '#nanime/utils'
 
 useAnimate('.boxes > .box', {
   scale: [

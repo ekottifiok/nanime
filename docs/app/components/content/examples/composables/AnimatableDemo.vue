@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useIntervalFn } from '@vueuse/core'
-import { round } from 'animejs/utils'
+import { round } from '#nanime/utils'
 import ExampleWrapper from '~/components/shared/ExampleWrapper.vue'
 
 const counter = reactive({ x: 0 })
