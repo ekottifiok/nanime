@@ -92,10 +92,10 @@ export type DraggableTypes = {
 
 export function normalizeDraggableContainer(target: DraggableTargetContainer): DraggableParams['container'] | null | undefined {
   if (typeof target === 'function') {
-    return target as any
+    return target
   }
 
-  const resolved = toValue(target as any)
+  const resolved = toValue(target)
 
   if (!resolved) return null
 

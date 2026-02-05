@@ -1,5 +1,5 @@
 import { tryOnScopeDispose, useMounted } from '@vueuse/core'
-import { nextTick, shallowRef, toValue, watch, watchPostEffect, type MaybeRefOrGetter } from '#imports'
+import { nextTick, shallowRef, toValue, watch, watchPostEffect } from '#imports'
 import { normalizeAnimeTarget, normalizeDraggableContainer, normalizeLayoutTarget, type DraggableTypes } from '../utils/normalize-targets'
 import type { Draggable, DraggableAxisParam, DraggableParams, TargetsParam } from 'animejs'
 import { createDraggable } from 'animejs/draggable'
@@ -67,6 +67,7 @@ export function useDraggable(
         trigger: trigger || undefined,
         container: container || undefined,
         ...(() => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const acc: any = {}
           REFFABLE_PROPS.forEach((key) => {
             if (!options || !(key in options)) return

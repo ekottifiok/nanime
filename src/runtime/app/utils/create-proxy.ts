@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Ref, UnwrapNestedRefs } from 'vue'
 import { unref, isRef, reactive } from '#imports'
 
