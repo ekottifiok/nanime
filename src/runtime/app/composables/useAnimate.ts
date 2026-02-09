@@ -1,5 +1,5 @@
 import { toReactive, tryOnScopeDispose, useMounted } from '@vueuse/core'
-import { shallowRef, toValue, watchEffect, type MaybeRefOrGetter } from '#imports'
+import { shallowRef, toValue, watchEffect, type MaybeRefOrGetter } from 'vue'
 import { normalizeAnimeTarget } from '../utils/normalize-targets'
 import type { AnimationParams, TargetsParam } from 'animejs'
 import { animate, type JSAnimation } from 'animejs/animation'

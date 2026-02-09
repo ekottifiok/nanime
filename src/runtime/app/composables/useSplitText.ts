@@ -1,4 +1,4 @@
-import { computed, nextTick, ref, shallowRef, toValue, watchEffect, type MaybeRef, type MaybeRefOrGetter } from '#imports'
+import { computed, nextTick, ref, shallowRef, toValue, watchEffect, type MaybeRef, type MaybeRefOrGetter } from 'vue'
 import { splitText, type TextSplitter } from 'animejs/text'
 import { normalizeSplitTextTarget } from '../utils/normalize-targets'
 import { extractNonFunctionProperties } from '../utils/extract-props'

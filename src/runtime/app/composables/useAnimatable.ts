@@ -1,6 +1,6 @@
 import { createAnimatable } from 'animejs/animatable'
 import { tryOnScopeDispose, useMounted } from '@vueuse/core'
-import { shallowReactive, toValue, watchEffect, type MaybeRefOrGetter } from '#imports'
+import { shallowReactive, toValue, watchEffect, type MaybeRefOrGetter } from 'vue'
 import { normalizeAnimeTarget } from '../utils/normalize-targets'
 import type { AnimatableObject, AnimatableParams, TargetsParam } from 'animejs'
 
