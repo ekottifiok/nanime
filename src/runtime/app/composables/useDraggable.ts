@@ -79,8 +79,6 @@ export function useDraggable(
         y: resolveAxis(options?.y),
       })
 
-      console.log('initializing')
-
       dragController.value = dragEngine
     }, {
       flush: 'post',

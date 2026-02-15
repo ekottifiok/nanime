@@ -6,7 +6,7 @@ import { animate, type JSAnimation } from 'animejs/animation'
 
 export function useAnimate(
   target: Parameters<typeof normalizeAnimeTarget>[0],
-  options?: MaybeRefOrGetter<AnimationParams>,
+  parameters?: MaybeRefOrGetter<AnimationParams>,
 ): JSAnimation {
   const mounted = useMounted()
   const animation = shallowRef(animate({}, {}))
@@ -18,7 +18,7 @@ export function useAnimate(
     if (oldTarget === targets) return
     if (animation.value) animation.value.revert()
     oldTarget = targets
-    const newAnimation = animate(targets, toValue(options) || {})
+    const newAnimation = animate(targets, toValue(parameters) || {})
     animation.value = newAnimation
   })
 
